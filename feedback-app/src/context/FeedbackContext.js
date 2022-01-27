@@ -21,6 +21,11 @@ export const FeedbackProvider = ({children}) => {
             rating: 10,
         }
     ])
+    // State for editing feedback (gets whichever feedback item was selected)
+    const [feedbackEdit, setFeedbackEdit] = useState({
+        item: {},
+        edit: false,
+    })
 
     const addFeedback = (newFeedback) => {
         newFeedback.id = uuidv4()
@@ -33,11 +38,27 @@ export const FeedbackProvider = ({children}) => {
             setFeedback(feedback.filter(item => item.id !== id))
         }
     }
+    // Update the feedback item being edited
+    const updateFeedback = (id, updItem) => {
+        setFeedback(feedback.map((item) => item.id === id ? {...item, ...updItem} : item))
+    }
 
+    // Sets item to be updated
+    const editFeedback = (item) => {
+        setFeedbackEdit({
+            item,
+            edit: true,
+        })
+    }
+
+    // 'feedbackEdit' is the actual piece of state
     return <FeedbackContext.Provider value={{
         feedback,
+        feedbackEdit,
         addFeedback,
         deleteFeedback,
+        editFeedback,
+        updateFeedback,
     }}>
         {children}
     </FeedbackContext.Provider>
