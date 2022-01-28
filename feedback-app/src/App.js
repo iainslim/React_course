@@ -37,4 +37,5 @@ function App() {
     )
 }
 
+// Export the App
 export default App;
