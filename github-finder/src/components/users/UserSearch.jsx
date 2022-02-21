@@ -42,7 +42,7 @@ function UserSearch() {
                     </div>
                 </form>
             </div>
-            {/*Only shows the Clear button if there are users on the scren*/}
+            {/*Only shows the Clear button if there are users on the screen*/}
             {users.length > 0 && (
             <div>
                 <button className="btn btn-ghost btn-lg" onClick={clearUsers}>
